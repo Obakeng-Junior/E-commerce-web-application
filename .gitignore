@@ -416,3 +416,11 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# App settings (secrets)
+appsettings.json
