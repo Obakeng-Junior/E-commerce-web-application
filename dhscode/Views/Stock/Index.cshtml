@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DHSOnlineStore.DTOs.StockDisplayDTO>
+@{
+}
+
+<h2>Stock</h2>
+
+<form asp-action="Index" method="get" class="my-2 d-flex gap-2">
+	<input type="text" name="sTerm" class="form-control w-25" placeholder="Search stock" />
+	<button type="submit" class="btn btn-primary">Find</button>
+	<a asp-action="Index" asp-controller="Stock" class="btn btn-dark">Reset</a>
+</form>
+
+@if(Model.Count() > 0)
+{
+	<table class="table table-bordered">
+		<tr>
+			<th>Product</th>
+			<th>Stock</th>
+			<th></th>
+		</tr>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.ProductName</td>
+				<td>@item.Quantity</td>
+				<td>
+					<a asp-action="ManageStock" asp-controller="Stock" asp-route-productId="@item.ProductId" class="btn btn-info">
+						Update stock
+					</a>
+				</td>
+			</tr>
+		}
+	</table>
+}

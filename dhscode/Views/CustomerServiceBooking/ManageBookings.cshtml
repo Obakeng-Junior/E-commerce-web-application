@@ -1,0 +1,121 @@
+﻿@model IEnumerable<DHSOnlineStore.Models.CustomerServiceBooking>
+
+@{
+    ViewData["Title"] = "Manage Service Bookings";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Manage Service Bookings</h2>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle"></i> @TempData["Error"]
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle shadow-sm">
+                    <tr>
+                        <th>Product</th>
+                        <th>Service Type</th>
+                        <th>Preferred Date</th>
+                        <th>Pickup/Delivery Date</th>
+                        <th>Contact</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    @foreach (var booking in Model)
+                    {
+                        <tr>
+                            <td>@booking.Product</td>
+                            <td>@booking.ServiceType</td>
+                            <td>@booking.PreferredDate.ToString("dd MMM yyyy")</td>
+                            <td>@booking.PreferredPickupOrDeliveryDate.ToString("dd MMM yyyy")</td>
+                            <td>@booking.CustomerContact</td>
+                            <td>
+                                @if (booking.Status == "Pending")
+                                {
+                                    <span>Pending</span>
+                                }
+                                else if (booking.Status == "Approved")
+                                {
+                                    <span>Approved</span>
+                                }
+                                else if (booking.Status == "InProgress")
+                                {
+                                    <span>In Progress</span>
+                                }
+                                else if (booking.Status == "Completed")
+                                {
+                                    <span>Completed</span>
+                                }
+                                else if (booking.Status == "Rejected" || booking.Status == "Canceled")
+                                {
+                                    <span class="badge bg-danger">@booking.Status</span>
+                                }
+                                else
+                                {
+                                    <span>@booking.Status</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="UpdateBookingStatus" method="post" id="statusForm-@booking.Id" class="d-inline-block">
+                                    <input type="hidden" name="bookingId" value="@booking.Id" />
+
+                                    <select name="status" id="status-@booking.Id" class="form-select form-select-sm" onchange="handleStatusChange(this, @booking.Id)">
+                                        <option value="">Select Status</option>
+                                        <option value="Approved">Approve</option>
+                                        <option value="InProgress">In Progress</option>
+                                        <option value="Completed">Complete</option>
+                                        <option value="Rejected">Reject</option>
+                                        <option value="Canceled">Cancel</option>
+                                    </select>
+
+                                    <div id="reasonDiv-@booking.Id" class="mt-2" style="display:none;">
+                                        <label for="reason" class="form-label">Reason:</label>
+                                        <textarea name="reason" rows="2" class="form-control form-control-sm"></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-sm btn-secondary mt-2"><i class="bi bi-check-circle"></i> Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center" role="alert">
+            <i class="bi bi-exclamation-circle"></i> No service bookings available.
+        </div>
+    }
+</div>
+
+<script>
+    function handleStatusChange(select, bookingId) {
+        const reasonDiv = document.getElementById("reasonDiv-" + bookingId);
+        const selectedStatus = select.value;
+
+        if (selectedStatus === "Rejected" || selectedStatus === "Canceled") {
+            reasonDiv.style.display = "block";
+        } else {
+            reasonDiv.style.display = "none";
+        }
+    }
+
+    document.querySelectorAll("[id^=statusForm-]").forEach(form => {
+        form.addEventListener('submit', function (e) {
+            const statusSelect = this.querySelector("select[name='status']");
+            const reasonTextarea = this.querySelector("textarea[name='reason']");
+
+            if ((statusSelect.value === "Rejected" || statusSelect.value === "Canceled") && !reasonTextarea.value.trim()) {
+                e.preventDefault();
+                alert('Please provide a reason for rejection or cancellation.');
+            }
+        });
+    });
+</script>

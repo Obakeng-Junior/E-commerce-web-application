@@ -1,0 +1,204 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Message as string))
+{
+    <div class="alert alert-success text-center">
+        @ViewBag.Message
+    </div>
+}
+
+<div class="d-flex justify-content-center my-4">
+    <img src="~/images/Logo/onlinestore.jpg" class="rounded-circle shadow-lg" alt="LogoOnlineStore" width="250" height="250">
+</div>
+
+<section class="text-center mb-5">
+    <h2 class="display-5 fw-bold text-dark">Welcome to Dark Hawk Security</h2>
+    <p class="lead text-secondary">Your trusted partner in security and safety services.</p>
+    <p class="text-muted">We provide a wide range of security services to ensure the protection of people, property, and assets, including 24/7 armed response, patrolling, CCTV monitoring, and more.</p>
+</section>
+
+<div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <!-- First Item (Active) -->
+        <div class="carousel-item active">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0">
+                        <img src="~/images/company/IMG-20241101-WA0001.jpg" class="card-img-top" alt="Security Team">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Professional Installations</h5>
+                            <p class="card-text">Our skilled team is always ready to respond to your security needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0">
+                        <img src="~/images/company/IMG-20241026-WA0004.jpg" class="card-img-top" alt="CCTV Monitoring">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Advanced CCTV Monitoring</h5>
+                            <p class="card-text">We use cutting-edge technology to monitor and secure your premises.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Second Item -->
+        <div class="carousel-item">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0">
+                        <img src="~/images/company/IMG-20241026-WA0005.jpg" class="card-img-top" alt="Access Control">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Access Control Systems</h5>
+                            <p class="card-text">Secure your property with our state-of-the-art access control solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0">
+                        <img src="~/images/company/IMG-20241026-WA0009.jpg" class="card-img-top" alt="Alarm Systems">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Gate Barriers</h5>
+                            <p class="card-text">Our high-quality gate barriers provide secure access control for your premises, ensuring safety and convenience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Third Item -->
+        <div class="carousel-item">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0">
+                        <img src="~/images/company/IMG-20241026-WA0004.jpg" class="card-img-top" alt="Security Audits">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">24/7 Surveillance</h5>
+                            <p class="card-text">Monitor your property around the clock with our reliable surveillance systems.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0">
+                        <img src="~/images/company/IMG-20241101-WA0001.jpg" class="card-img-top" alt="Security Audits">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Security Audits</h5>
+                            <p class="card-text">We conduct thorough security audits to identify potential vulnerabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fourth Item -->
+        <div class="carousel-item">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0">
+                        <img src="~/images/company/IMG-20241026-WA0007.jpg" class="card-img-top" alt="Security Consultation">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Security Consultations</h5>
+                            <p class="card-text">Get expert advice on how to improve your security systems.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm border-0">
+                        <img src="~/images/company/IMG-20241026-WA0008.jpg" class="card-img-top" alt="Custom Solutions">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Custom Security Solutions</h5>
+                            <p class="card-text">We offer tailored security solutions to meet your specific needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+<section class="text-center mt-5">
+    <h2 class="display-5 fw-bold text-dark">Why Choose Dark Hawk Security?</h2>
+    <p class="text-muted">Our commitment to excellence and innovation sets us apart in the security industry.</p>
+</section>
+
+<section class="bg-light text-center py-5">
+    <h3 class="display-6 fw-bold text-dark">Our Achievements</h3>
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <h2 class="display-5 text-primary">100+</h2>
+            <p>Clients Protected</p>
+        </div>
+        <div class="col-md-3">
+            <h2 class="display-5 text-primary">150+</h2>
+            <p>Security Installations</p>
+        </div>
+        <div class="col-md-3">
+            <h2 class="display-5 text-primary">24/7</h2>
+            <p>Support Available</p>
+        </div>
+        <div class="col-md-3">
+            <h2 class="display-5 text-primary">99%</h2>
+            <p>Customer Satisfaction</p>
+        </div>
+    </div>
+</section>
+
+<footer class="mt-5 bg-white text-dark py-4 shadow">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/about" class="text-dark hover-effect">About Us</a></li>
+                    <li><a href="/terms" class="text-dark hover-effect">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Support</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/faq" class="text-dark hover-effect">FAQs</a></li>
+                    <li><a href="/returns" class="text-dark hover-effect">Returns & Exchanges</a></li>
+                    <li><a href="/CustomerInquiry/CreateInquiry" class="text-dark hover-effect">Customer Support</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/contact" class="text-dark hover-effect">General Enquiries</a></li>
+                    <li><a href="/contact" class="text-dark hover-effect">Technical Support</a></li>
+                    <li><a href="/contact" class="text-dark hover-effect">Sales</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Services</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/CustomerServiceBooking/CreateBooking" class="text-dark hover-effect">Book Service</a></li>
+                    <li><a href="/CustomerServiceBooking/MyBookings" class="text-dark hover-effect">Your Bookings</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .hover-effect {
+        display: inline-block;
+        transition: transform 0.3s ease, color 0.3s ease;
+        text-decoration: none;
+    }
+
+        .hover-effect:hover {
+            transform: translateY(-3px);
+            color: #007bff; /* Change to blue on hover */
+        }
+</style>
+

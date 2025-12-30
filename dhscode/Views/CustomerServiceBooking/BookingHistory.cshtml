@@ -1,0 +1,41 @@
+﻿@model DHSOnlineStore.ViewModels.BookingHistoryViewModel
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<h2>Booking History for Booking ID: @Model.Booking.Id</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Reason</th>
+            <th>Change Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var history in Model.StatusHistory)
+        {
+            <tr>
+                <td>@history.Status</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(history.Reason))
+                    {
+                        @history.Reason
+                    }
+                    else
+                    {
+                        <span class="text-muted">No reason provided</span>
+                    }
+                </td>
+                <td>@history.ChangeDate.ToShortDateString() @history.ChangeDate.ToShortTimeString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("ManageBookings", "CustomerServiceBooking")" class="btn btn-primary">Back to Manage Bookings</a>

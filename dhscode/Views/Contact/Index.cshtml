@@ -1,0 +1,52 @@
+﻿@model DHSOnlineStore.Models.ContactViewModel
+
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Contact Us</h1>
+        <p class="lead">We’re here to help and answer any questions you may have. Reach out to us!</p>
+    </div>
+
+    <div class="row">
+        <!-- Example Card Template -->
+        @foreach (var contact in Model.Contacts)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">@contact.Title</h5>
+
+                        @if (!string.IsNullOrEmpty(contact.PhoneNumber))
+                        {
+                            <p class="card-text">
+                                <i class="bi bi-telephone-fill me-2"></i>@contact.PhoneNumber
+                            </p>
+                        }
+
+                        @if (contact.Emails != null && contact.Emails.Any())
+                        {
+                            @foreach (var email in contact.Emails)
+                            {
+                                <p class="card-text">
+                                    <i class="bi bi-envelope-fill me-2"></i>
+                                    <a href="mailto:@email">@email</a>
+                                </p>
+                            }
+                        }
+
+                        @if (!string.IsNullOrEmpty(contact.Address))
+                        {
+                            <p class="card-text">
+                                <i class="bi bi-geo-alt-fill me-2"></i>@contact.Address
+                            </p>
+                        }
+                        <p class="card-text">
+                            <i class="bi bi-clock-fill me-2"></i>@contact.WorkingHours
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<a asp-action="ContactForm" asp-controller="ContactForm" class="btn btn-primary mt-4">Need Help?</a>

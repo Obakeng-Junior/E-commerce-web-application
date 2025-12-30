@@ -1,0 +1,26 @@
+﻿@model DHSOnlineStore.Models.CustomerServiceBooking
+
+@{
+    ViewData["Title"] = "Booking Confirmation";
+}
+
+<div class="container mt-5">
+    <h2>Booking Confirmation</h2>
+    <p>Thank you, @Model.User.UserName, for your service booking.</p>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            Booking Details
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Service Type: @Model.ServiceType</h5>
+            <p class="card-text"><strong>Preferred Date:</strong> @Model.PreferredDate.ToString("dddd, MMMM dd, yyyy")</p>
+            <p class="card-text"><strong>Status:</strong> @Model.Status</p>
+            <p class="card-text"><strong>Contact Information:</strong> @Model.User.Email</p>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>

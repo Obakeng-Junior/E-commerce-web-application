@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DHSOnlineStore.Models.Notification>
+
+@{
+    ViewData["Title"] = "Notifications";
+}
+
+<h2 class="text-center my-3">Your Notifications</h2>
+
+<div class="container">
+    <div class="card" style="height: 70vh; overflow-y: auto;">
+        <div class="card-body">
+            @if (!Model.Any())
+            {
+                <p class="text-center text-muted">No notifications at the moment.</p>
+            }
+            else
+            {
+                @foreach (var notification in Model)
+                {
+                    <div class="d-flex flex-column mb-3 p-3 rounded
+                                @(notification.IsRead ? "bg-light text-muted" : "bg-primary text-white")">
+                        <p class="mb-1">@notification.Message</p>
+                        <small class="text-end">@notification.CreatedDate.ToString("g")</small>
+                    </div>
+                    <div class="mt-2 mb-2">
+                        <a asp-controller="Order" asp-action="DeleteNotification" asp-route-id="@notification.Id"><i class="bi bi-trash-fill"></i></a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

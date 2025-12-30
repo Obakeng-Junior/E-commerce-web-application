@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = ViewData["ServiceName"];
+}
+
+<h2 class="d-flex justify-content-center mb-4">@ViewData["ServiceName"]</h2>
+<div class="text-center">
+    @if (ViewData["ServiceName"]?.ToString() == "Stationary and Patrolling Guards")
+    {
+        <img src="@Url.Content("~/images/Logo/logo.jpeg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="Stationary Guards" width="400">
+        <p>Our professional Stationary and Patrolling Guards provide unwavering security, ensuring your premises remain protected 24/7. Trained in surveillance, risk assessment, and incident response, they serve as a reliable deterrent against threats.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "Gate and Boom Guarding")
+    {
+        <img src="@Url.Content("~/images/Logo/logo.jpeg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="Gate Guarding" width="400">
+        <p>Our Gate and Boom Guarding specialists ensure seamless access control, verifying credentials and managing entry points with precision. Their vigilance prevents unauthorized access while maintaining a professional and welcoming presence.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "CCTV Installation and Monitoring")
+    {
+        <img src="@Url.Content("~/images/Logo/logo.jpeg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="CCTV Installation" width="400">
+        <p>We offer state-of-the-art CCTV Installation and Monitoring solutions tailored to your security needs. Our advanced surveillance systems provide real-time monitoring and recorded footage, ensuring maximum protection for your premises.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "Armed Reaction")
+    {
+        <img src="@Url.Content("~/images/Logo/logo.jpeg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="Armed Reaction" width="400">
+        <p>Our highly trained Armed Reaction units respond swiftly to security threats, ensuring rapid intervention in emergencies. Equipped with advanced tactical training, they provide immediate protection and peace of mind.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "Fire and Evacuation Emergency")
+    {
+        <img src="@Url.Content("~/images/Logo/logo.jpeg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="Fire Evacuation" width="400">
+        <p>Safety is our priority. Our Fire and Evacuation Emergency services ensure a swift and organized response to fire hazards, helping protect lives and property with well-structured evacuation plans and fire safety measures.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "Health and Accident Emergency")
+    {
+        <img src="@Url.Content("~/images/Logo/logo.jpeg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="Health Emergency" width="400">
+        <p>Our Health and Accident Emergency services provide immediate medical assistance in critical situations. With trained first responders and efficient emergency protocols, we ensure swift and professional care during emergencies.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "Access Control")
+    {
+        <img src="@Url.Content("~/images/Logo/logo.jpeg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="Access Control" width="400">
+        <p>Secure your premises with our cutting-edge Access Control solutions. From biometric authentication to key card systems, we implement robust security measures to regulate and monitor entry into restricted areas.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "Alarm Installation")
+    {
+        <img src="@Url.Content("~/images/Logo/logo.jpeg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="Alarm Installation" width="400">
+        <p>Enhance your security with our top-tier Alarm Installation services. Our high-performance alarm systems detect and deter intrusions, ensuring continuous protection for residential and commercial properties.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "Cleaning Services")
+    {
+        <img src="@Url.Content("~/images/services/cleaning-services.jpg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="Cleaning Services" width="400">
+        <p>Maintain a pristine and sanitary environment with our professional Cleaning Services. We offer customized cleaning solutions for homes, offices, and commercial spaces, ensuring cleanliness and hygiene at all times.</p>
+    }
+    else if (ViewData["ServiceName"]?.ToString() == "Information Communication Technology (ICT) Services")
+    {
+        <img src="@Url.Content("~/images/services/ict-services.jpg")" class="img-fluid shadow-lg mb-3" style="border-radius: 60px;" alt="ICT Services" width="400">
+        <p>Our ICT Services provide cutting-edge technological solutions, from network security to software development. We ensure seamless IT infrastructure management, helping businesses stay ahead in the digital era.</p>
+    }
+    else
+    {
+        <p>Service description not available.</p>
+    }
+</div>
+
+
+<!-- Buttons -->
+<div class="mt-3">
+    <a class="btn btn-primary" href="mailto:sanele.mbhele@darkhawk.co.za?subject=Request%20for%20Quote%20-%20(Specify service)">
+        Request a Quote
+    </a>
+    <a class="btn btn-primary" asp-controller="Product" asp-action="Products">
+        View Products
+    </a>
+</div>

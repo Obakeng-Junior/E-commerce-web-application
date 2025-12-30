@@ -1,0 +1,31 @@
+﻿@model DHSOnlineStore.Models.ContactFormSubmission
+
+@{
+    ViewData["Title"] = "Respond to Submission";
+}
+
+<div class="card shadow p-4 mb-4 bg-white rounded">
+    <h2 class="mb-3">Respond to Customer Message</h2>
+
+    <div class="card-body border rounded p-3 mb-3">
+        <h4 class="text-secondary">Submission Details</h4>
+        <p><strong>Date Submitted:</strong> @Model.DateSubmitted</p>
+        <p><strong>Message:</strong> @Model.Message</p>
+    </div>
+
+    <form asp-action="RespondToSubmission" method="post" class="needs-validation" novalidate>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group mb-3">
+            <label for="response" class="form-label fw-bold">Message status:</label>
+            <select id="response" name="response" class="form-select" required>
+                <option value="">-- Select a Response --</option>
+                <option value="Seen">Seen</option>
+                <option value="Responded">Responded</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-danger w-100">Submit Response</button>
+    </form>
+</div>
+

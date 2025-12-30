@@ -1,0 +1,35 @@
+﻿@model DHSOnlineStore.Models.CustomerServiceBooking
+@using Microsoft.AspNetCore.Identity
+
+<h2>Service Booking</h2>
+<form asp-action="CreateBooking" method="post">
+    <div class="form-group">
+        <label asp-for="Id" hidden></label>
+        <input asp-for="Id" class="form-control" hidden readonly />
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Product">Product</label>
+        <input type="text" asp-for="Product" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="ServiceType">Service Type</label>
+        <input type="text" asp-for="ServiceType" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="PreferredDate">Preferred Date</label>
+        <input type="date" asp-for="PreferredDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="PreferredPickupOrDeliveryDate">Preferred Pickup or Delivery Date</label>
+        <input type="date" asp-for="PreferredPickupOrDeliveryDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="CustomerContact">Contact Information</label>
+        <input type="text" asp-for="CustomerContact" class="form-control" readonly value="@User.Identity?.Name" />
+    </div>
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary">Submit Booking</button>
+    </div>
+</form>

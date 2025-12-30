@@ -1,0 +1,63 @@
+﻿@model DHSOnlineStore.Models.CustomerInquiry
+@using Microsoft.AspNetCore.Identity;
+
+@{
+    ViewData["Title"] = "Customer support";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+
+
+
+<form asp-action="CreateInquiry" asp-controller="CustomerInquiry" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="Id" hidden></label>
+            <input asp-for="Id" class="form-control" hidden readonly/>
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+
+        <label for="InquiryType">Type</label>
+        <select asp-for="InquiryType" class="form-control">
+            <option value="Inquiry">Inquiry</option>
+            <option value="Complaint">Complaint</option>
+            <option value="Installation Support">Installation Support</option>
+        </select>
+        <span asp-validation-for="InquiryType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Subject"></label>
+        <input asp-for="Subject" class="form-control" />
+        <span asp-validation-for="Subject" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input asp-for="Email" class="form-control" hidden value="@User.Identity?.Name"/>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Message"></label>
+        <textarea asp-for="Message" class="form-control"></textarea>
+        <span asp-validation-for="Message" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+</form>
+<a asp-action="ContactForm" asp-controller="ContactForm" class="btn btn-primary" >Need Help?</a>
+
+
+@section Scripts {
+    @{
+        // Enable validation scripts for client-side validation.
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,158 @@
+﻿@* @model DHSOnlineStore.DTOs.CheckoutDTO
+
+<style>
+    /* Basic reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Container Styling */
+    .checkout-container {
+        background-color: #f5f5f5;
+        padding: 20px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        border-radius: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        color: #333;
+        text-align: center;
+    }
+
+        /* Header Styling */
+        .checkout-container h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+    /* Order Summary Styling */
+    .order-summary {
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 15px;
+    }
+
+    /* Product Detail Rows */
+    .product-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+        .product-row:last-child {
+            border-bottom: none;
+        }
+
+    .product-label {
+        font-size: 0.9rem;
+        color: #555;
+        flex-basis: 40%;
+        text-align: left;
+    }
+
+    .product-value {
+        font-size: 0.9rem;
+        color: #333;
+        flex-basis: 60%;
+        text-align: right;
+    }
+
+    /* Product Image Styling */
+    .product-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+
+    /* Summary & Total Styling */
+    .checkout-container h4 {
+        font-size: 1rem;
+        color: #666;
+        margin: 10px 0;
+    }
+
+        .checkout-container h4.total {
+            font-size: 1.3rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+    /* Button Styling */
+    .checkout-container .paid-button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: limegreen;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+        .checkout-container .pay-button:hover {
+            background-color: #a93226;
+        }
+</style>
+
+<div class="checkout-container">
+    <h2>Checkout Demo</h2>
+    <div class="order-summary">
+        @foreach (var item in Model.CartDetails)
+        {
+            <div class="product-row">
+                <div class="product-label">Order No.</div>
+                <div class="product-value">@Model.OrderNumber</div>
+            </div>
+            <div class="product-row">
+                <div class="product-label">Product</div>
+                <div class="product-value">@item.Product.Name</div>
+            </div>
+            <div class="product-row">
+                <div class="product-label">Image</div>
+                <div class="product-value">
+                    <img src="/images/@item.Product.Image" alt="@item.Product.Name" class="product-image" />
+                </div>
+            </div>
+            <div class="product-row">
+                <div class="product-label">Brand</div>
+                <div class="product-value">@item.Product.Brand</div>
+            </div>
+            <div class="product-row">
+                <div class="product-label">Price</div>
+                <div class="product-value">@item.Product.Price.ToString("C")</div>
+            </div>
+            <div class="product-row">
+                <div class="product-label">Quantity</div>
+                <div class="product-value">@item.Quantity</div>
+            </div>
+            <div class="product-row">
+                <div class="product-label">Total</div>
+                <div class="product-value">@((item.Product.Price * item.Quantity).ToString("C"))</div>
+            </div>
+        }
+        <h4>Shipping: R 90.00</h4>
+        <h4 class="total">Total: R @(Model.TotalAmount )</h4>
+    </div>
+
+    <form asp-action="Checkout" method="post">
+
+    </form>
+
+    <form action="https://sandbox.payfast.co.za​/eng/process" method="post">
+       
+        <input type="submit">
+        <button type="submit" class="paid-button">Successful</button>
+    </form>
+</div>
+ *@

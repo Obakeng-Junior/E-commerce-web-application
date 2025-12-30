@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DHSOnlineStore.Models.ContactFormSubmission>
+
+@{
+    ViewData["Title"] = "My Submissions";
+}
+@{
+    var successMessage = TempData["successMessage"] as string;
+    if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success">
+            @successMessage
+        </div>
+    }
+}
+<h2>My Submissions</h2>
+
+@if (!Model.Any())
+{
+    <p>No submissions found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Department</th>
+                <th>Message</th>
+                <th>Response</th>
+                <th>Response Date</th>
+                <th>Date Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var submission in Model)
+            {
+                <tr>
+                    <td>@submission.Department</td>
+                    <td>@submission.Message</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(submission.Response))
+                        {
+                            <span>No response yet</span>
+                        }
+                        else
+                        {
+                            @submission.Response
+                        }
+                    </td>
+                    <td>
+                        @if (submission.DateResponded.HasValue)
+                        {
+                            @submission.DateResponded.Value.ToString("g")
+                        }
+                        else
+                        {
+                            <span class="text-muted">Pending</span>
+                        }
+                    </td>
+                    <td>@submission.DateSubmitted.ToString("g")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

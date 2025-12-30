@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "FAQs";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="mt-5">
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+        <!-- Chat Box -->
+        <div id="chat-box" class="border border-secondary p-3 rounded mb-3" style="height: 400px; overflow-y: auto;">
+            <!-- Messages will be appended here -->
+        </div>
+
+        <!-- FAQ Buttons -->
+        <div id="faq-buttons" class="d-flex flex-wrap justify-content-center gap-2">
+            <button class="btn btn-outline-primary" onclick="sendMessage('What are your business hours?')">Business Hours</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('Where is your company located?')">Location</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('How can I contact customer support?')">Contact Support</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('What types of security services do you offer?')">Security Services</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('Do you provide 24/7 monitoring services?')">24/7 Monitoring</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('What payment methods do you accept for your services?')">Payment Methods</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('Do you offer security consultations before installing a system?')">Consultation Services</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('Can I customize the security package to fit my needs?')">Customizable Packages</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('What is your service coverage area?')">Service Coverage Area</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('Are there discounts available for long-term service contracts?')">Discounts Available?</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('Do you offer mobile security services or on-site guards?')">Mobile or On-Site Guards</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('What is included in a full security assessment?')">Full Security Assessment</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('Is there a cancellation policy if I need to discontinue services?')">Cancellation Policy</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('Do you have environmentally-friendly or energy-efficient equipment?')">Eco-Friendly Equipment</button>
+            <button class="btn btn-outline-primary" onclick="sendMessage('What should I do if there’s an emergency or system malfunction?')">Emergency Assistance</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage(userMessage) {
+            const chatBox = document.getElementById('chat-box');
+            // Append user's message to chat
+            chatBox.innerHTML += `<div class="text-end mb-2"><span class="badge bg-primary text-white"><i class="bi bi-person"></i> ${userMessage}</span></div>`;
+
+            fetch('/FAQ/SendMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userMessage })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Append bot's response to chat
+                    chatBox.innerHTML += `<div class="text-start mb-2"><span class="badge bg-secondary"><i class="bi bi-robot"></i> ${data.response}</span></div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+</body>
+</html>

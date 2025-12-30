@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DHSOnlineStore.Models.CustomerInquiry>
+
+<h2>My Inquiries</h2>
+
+@if (Model.Any())
+{
+
+    <table class="table table-hover table-striped align-middle shadow-sm">
+            <tr>
+                <th>Subject</th>
+                <th>Inquiry Type</th>
+                <th>Status</th>
+                <th>Admin Response</th>
+                <th>Date Submitted</th>
+            </tr>
+            @foreach (var inquiry in Model)
+            {
+                <tr>
+                    <td>@inquiry.Subject</td>
+                    <td>@inquiry.InquiryType</td>
+                    <td>@inquiry.Status</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(inquiry.AdminResponse))
+                        {
+                            @inquiry.AdminResponse
+                        }
+                        else
+                        {
+                            <span>No response yet</span>
+                        }
+                    </td>
+                    <td>@inquiry.DateSubmitted.ToString("g")</td>
+                </tr>
+            }
+    </table>
+}
+else
+{
+    <div class="alert alert-info text-center" role="alert">
+        <i class="bi bi-exclamation-circle"></i> You haven't made any inquiries.
+    </div>
+}

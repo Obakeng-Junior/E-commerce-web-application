@@ -1,0 +1,80 @@
+﻿@model DHSOnlineStore.ViewModels.ContactFormViewModel
+
+@{
+    ViewData["Title"] = "Customer Messages";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Customer Messages</h2>
+
+   @*  @if (TempData["successMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <i class="bi bi-check-circle"></i> @TempData["successMessage"]
+        </div>
+    }
+
+    @if (TempData["errorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle"></i> @TempData["errorMessage"]
+        </div>
+    } *@
+
+    @if (Model.Submissions != null && Model.Submissions.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle shadow-sm">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th> 
+                        @* <th>Response Date</th> *@
+                        <th></th>
+                    </tr>
+                    @foreach (var submission in Model.Submissions)
+                    {
+                        <tr>
+                            <td>@submission.FirstName @submission.LastName</td>
+                            <td>@submission.Email</td>
+                            <td>@submission.Message</td>
+                            <td>@submission.DateSubmitted.ToString("dd MMM yyyy HH:mm")</td>
+                            <td>
+                                @if (string.IsNullOrEmpty(submission.Response))
+                                {
+                                    <span class="text-muted">No response yet</span>
+                                }
+                                else
+                                {
+                                    @submission.Response
+                                }
+                            </td>
+                            @* <td>
+                                @if (submission.DateResponded.HasValue)
+                                {
+                                    @submission.DateResponded.Value.ToString("dd MMM yyyy HH:mm")
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Pending</span>
+                                }
+                            </td> *@
+                            <td>
+                                <a href="@Url.Action("RespondToSubmission", "ContactForm", new { id = submission.Id })" class="btn btn-sm btn-secondary">
+                                    <i class="bi bi-reply"></i> Update status
+                                </a>
+                            </td>
+                        </tr>
+                    }
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center" role="alert">
+            <i class="bi bi-exclamation-circle"></i> No customer messages available.
+        </div>
+    }
+</div>

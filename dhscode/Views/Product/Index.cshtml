@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DHSOnlineStore.Models.Product>
+
+<h2>Products</h2>
+
+<a asp-action="AddProduct" asp-controller="Product" class="btn btn-primary">Add product</a>
+
+@if (Model?.Count() > 0)
+{
+	<table class="table table-striped my-2">
+		<tr>
+			<th>Image</th>
+			<th>Name</th>
+			<th>Brand</th>
+			<th>Price</th>
+			<th>Category</th>
+			<th>Description</th>
+			<th></th>
+		</tr>
+		@foreach (var product in Model)
+		{
+			<tr>
+				<td>
+					@if (string.IsNullOrWhiteSpace(product.Image))
+					{
+						<img src="/images/default.jpg" style="width:80px;height:100px" alt="product image" />
+					}
+					else
+					{
+						<img src="/images/@product.Image" style="width:80px;height:100px" alt="product image" />
+					}
+				</td>
+				<td>@product.Name</td>
+				<td>@product.Brand</td>
+				<td>@product.Price</td>
+				<td>@product.Category</td>
+				<td>@product.Description</td>
+				<td>
+					<div class="mb-2">
+						<a asp-action="UpdateProduct" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-success">
+						Edit
+					</a>
+					</div>
+					<div>
+						<a asp-action="DeleteProduct" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-danger" )">
+						Delete
+					</a>
+					</div>
+				</td>
+			</tr>
+		}
+	</table>
+}
+
+@section Scripts {
+	<script>
+		async function deleteProduct (id) {
+			try {
+				var response = await fetch(`/Product/DeleteProduct?id=${id}`);
+				if (response.status == 200) {
+					var result = await response.json();
+					console.log(result);
+					// var cartCountElement = document.getElementById("cartCount");
+					alert("Product successfuly deleted");
+				}
+			}
+			catch (err) {
+				console.log(err);
+			}
+		}
+	</script>
+
+}

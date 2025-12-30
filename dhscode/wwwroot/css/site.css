@@ -1,0 +1,165 @@
+/* Base font size and readability */
+html {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif; /* Modern and readable font */
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px; /* Slightly larger for tablets and desktops */
+    }
+}
+
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white; /* White background */
+    color: black; /* Black text for high contrast */
+    line-height: 1.6; /* Comfortable line spacing */
+}
+
+.image {
+    text-align: center; /* Centers content inside the div */
+    margin: 0 auto; /* Centers the div itself */
+    display: inline-block; /* Ensures the image container does not span full width */
+}
+
+    .image img {
+        max-width: 100%; /* Ensures the image is responsive */
+        height: auto; /* Maintains the aspect ratio */
+        width: 200px; /* Define the image size explicitly */
+        display: inline-block; /* Keeps the image inline, preventing block-level impact */
+    }
+
+
+
+/* Header and Navigation */
+.navbar {
+    background-color: #2c2c2c; /* Dark gray for header */
+    color: #ffffff; /* White text for contrast */
+}
+
+.navbar-brand, .nav-link {
+    color: black !important; /* Black text for readability on white */
+}
+
+    .nav-link:hover {
+        color: #a00000 !important; /* Red accent for hover */
+    }
+
+/* Buttons */
+.btn-primary {
+    background-color: #a00000; /* Red for calls to action */
+    border-color: #a00000;
+}
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background-color: #b30000; /* Slightly darker red on hover */
+        border-color: #b30000;
+    }
+
+.btn-secondary {
+    background-color: #333333; /* Dark gray for secondary buttons */
+    border-color: #333333;
+    color: #ffffff;
+}
+
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+        background-color: #444444; /* Slightly lighter gray on hover */
+        border-color: #444444;
+    }
+
+/* Form Controls */
+.form-control {
+    background-color: #ffffff; /* White form background for simplicity */
+    border-color: #444; /* Subtle border for definition */
+    color: #000000; /* Black text for readability */
+}
+
+    .form-control::placeholder {
+        color: #aaaaaa; /* Light gray placeholder text */
+    }
+
+/* Headings and Text */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 20px;
+    color: #000000; /* Black headings */
+    font-weight: bold; /* Emphasize headings */
+}
+
+p, li, .form-text {
+    color: #000000; /* Black text for readability */
+}
+
+/* Links - Make links black by default, with red emphasis on hover */
+a {
+    color: #000000; /* Black links by default */
+    text-decoration: none; /* Optional: Remove underline */
+}
+
+    a:hover {
+        color: #a00000; /* Red color on hover */
+    }
+
+/* Footer */
+footer {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text for high contrast */
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0; /* Optional: subtle border for separation */
+}
+
+    footer a {
+        color: #000000; /* Black links in footer */
+        text-decoration: none;
+    }
+
+        footer a:hover {
+            color: #a00000; /* Red links in footer on hover */
+        }
+
+/* Card Style */
+.card {
+    background-color: #ffffff; /* White card background */
+    border: 1px solid #dddddd; /* Light gray border for subtle styling */
+    color: #000000; /* Black text */
+}
+
+/* Footer Links Section */
+.footer-links {
+    background-color: #f5f5f5; /* Light gray background */
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+    .footer-links h3 {
+        color: #000000; /* Black heading */
+    }
+
+    .footer-links ul li a {
+        color: #000000; /* Black links */
+    }
+
+        .footer-links ul li a:hover {
+            color: #a00000; /* Red links on hover */
+        }
+
+/* Payment Icons */
+.payment-icons img {
+    filter: grayscale(0); /* Full color for payment icons */
+    transition: filter 0.3s ease;
+    min-width: 1px; /* Ensure minimum size of 20 pixels */
+    min-height: 1px; /* Ensure minimum size of 20 pixels */
+    width: auto; /* Maintain original width while ensuring min-height */
+    height: auto; /* Maintain original height while ensuring min-height */
+}
+
+    .payment-icons img:hover {
+        filter: brightness(1.2); /* Slightly brighter on hover */
+    }

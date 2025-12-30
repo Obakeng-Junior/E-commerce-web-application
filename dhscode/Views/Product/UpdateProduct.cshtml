@@ -1,0 +1,70 @@
+﻿@using System.Globalization
+@model DHSOnlineStore.Models.Product
+
+@{
+}
+
+<div style="width:50%;">
+	<h2>Update Product</h2>
+
+	<a asp-action="Index" asp-controller="Product" class="btn btn-primary">Back</a>
+
+	<form asp-action="UpdateProduct" enctype="multipart/form-data">
+		<div class="my-2">
+			<label>Name</label>
+			<input type="text" class="form-control" asp-for="Name" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+
+		<div class="my-2">
+			<label>Brand</label>
+			<input type="text" class="form-control" asp-for="Brand" />
+			<span asp-validation-for="Brand" class="text-danger"></span>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="Price" class="control-label"></label>
+			<input type="text" class="form-control" asp-for="Price" value="@Model.Price.ToString("F2", CultureInfo.InvariantCulture)" />
+			<span asp-validation-for="Price" class="text-danger"></span>
+		</div>
+
+		<div class="my-2">
+			<label>Category</label>
+			<select class="form-control" asp-for="Category">
+				<option value="">-- Select a Category --</option>
+				<option value="Surveillance Systems">Surveillance Systems</option>
+				<option value="Access Control & Gate Automation">Access Control & Gate Automation</option>
+				<option value="Alarm Systems">Alarm Systems</option>
+			</select>
+			<span asp-validation-for="Category" class="text-danger"></span>
+		</div>
+
+		<div class="my-2">
+			<label>Description</label>
+			<textarea class="form-control" asp-for="Description"></textarea>
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
+
+		<div class="my-2">
+			<label>Image</label>
+			<input type="file" class="form-control" asp-for="ImageFile" />
+		</div>
+
+		<div class="my-2">
+			<button type="submit" class="btn btn-info">Update</button>
+		</div>
+	</form>
+</div>
+<script>
+	//updateProd
+		document.querySelector("form").addEventListener("submit", function (event) {
+			const priceInput = document.querySelector("[name='Price']");
+			const priceValue = priceInput.value;
+			const regex = /^\d+(\.\d{1,2})$/;
+
+			if (!regex.test(priceValue)) {
+				alert("Price must be in the format '1200.00' with a dot as the decimal separator.");
+				event.preventDefault();
+			}
+		});
+</script>

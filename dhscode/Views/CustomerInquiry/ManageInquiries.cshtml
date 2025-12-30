@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DHSOnlineStore.Models.CustomerInquiry>
+
+@{
+    ViewData["Title"] = "Customer Inquiries";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Manage Customer Inquiries</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle shadow-sm">
+                    <tr>
+                        <th>User</th>
+                        <th>Type</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Date Submitted</th>
+                        <th>Actions</th>
+                    </tr>
+                    @foreach (var inquiry in Model)
+                    {
+                        <tr>
+                            <td>@inquiry.Email</td>
+                            <td>@inquiry.InquiryType</td>
+                            <td>@inquiry.Subject</td>
+                            <td>
+                                @if (inquiry.Status == "Pending")
+                                {
+                                    <span>Pending</span>
+                                }
+                                else if (inquiry.Status == "Responded")
+                                {
+                                    <span>Responded</span>
+                                }
+                                else
+                                {
+                                    <span>@inquiry.Status</span>
+                                }
+                            </td>
+                            <td>@inquiry.DateSubmitted.ToString("dd MMM yyyy")</td>
+                            <td>
+                                <a asp-action="RespondToInquiry" asp-route-id="@inquiry.Id" class="btn btn-sm btn-secondary">
+                                    <i class="bi bi-reply"></i> Respond
+                                </a>
+                            </td>
+                        </tr>
+                    }
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center" role="alert">
+            <i class="bi bi-exclamation-circle"></i> No customer inquiries at the moment.
+        </div>
+    }
+</div>
